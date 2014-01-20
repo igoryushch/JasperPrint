@@ -35,9 +35,7 @@ public class JasperServerUnitTest {
     @Test
     public void testServerInfo () throws Exception {
         ServerInfoService infoService = new ServerInfoServiceImpl ();
-
         Response response = infoService.getServerInfo ();
-
         Assert.assertEquals ( response.getStatus (), 200 );
         Assert.assertTrue ( response.hasEntity () );
         Assert.assertNotNull ( response.getEntity () );
