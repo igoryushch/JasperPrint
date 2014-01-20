@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<application xmlns="http://wadl.dev.java.net/2009/02">
+    <doc xmlns:jersey="http://jersey.java.net/" jersey:generatedBy="Jersey: 1.13-b01 03/09/2012 03:52 PM"/>
+    <grammars>
+        <include href="xsd0.xsd">
+            <doc xml:lang="en" title="Generated"/>
+        </include>
+    </grammars>
+    <resources base="http://localhost:8080/jasperserver/rest_v2/">
+
+        <resource path="/serverInfo">
+            <method name="GET" id="getServerInfo">
+                <response>
+                    <representation mediaType="application/xml"/>
+                    <representation mediaType="application/json"/>
+                </response>
+            </method>
+            <resource path="/features">
+                <method name="GET" id="getFeatures">
+                    <response>
+                        <representation mediaType="text/plain"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/version">
+                <method name="GET" id="getServerVersion">
+                    <response>
+                        <representation mediaType="text/plain"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/edition">
+                <method name="GET" id="getServerEdition">
+                    <response>
+                        <representation mediaType="text/plain"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/editionName">
+                <method name="GET" id="getServerEditionName">
+                    <response>
+                        <representation mediaType="text/plain"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/licenseType">
+                <method name="GET" id="getServerLicenseType">
+                    <response>
+                        <representation mediaType="text/plain"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/build">
+                <method name="GET" id="getServerBuild">
+                    <response>
+                        <representation mediaType="text/plain"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/expiration">
+                <method name="GET" id="getServerExpiration">
+                    <response>
+                        <representation mediaType="text/plain"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/dateFormatPattern">
+                <method name="GET" id="dateFormatPattern">
+                    <response>
+                        <representation mediaType="text/plain"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/datetimeFormatPattern">
+                <method name="GET" id="datetimeFormatPattern">
+                    <response>
+                        <representation mediaType="text/plain"/>
+                    </response>
+                </method>
+            </resource>
+        </resource>
+
+    </resources>
+</application>

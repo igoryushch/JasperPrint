@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jaxws="http://cxf.apache.org/jaxws"
+       xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+       xsi:schemaLocation="
+                    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+                    http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
+                    http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd">
+
+
+    <import resource="classpath*:/application-context.xml"/>
+
+    <context:property-override location="JasperPrintServiceIT-override.properties"/>
+    <context:property-placeholder location="JasperPrintServiceIT-placeholder.properties" ignore-unresolvable="true"/>
+
+    <!-- REASON TO SPECIFY BOTH implementor & implementorClass:
+    When using Spring AOP, spring injects a proxy to the bean into CXF instead of the actual bean.
+    The Proxy does not have the annotations on it (like the @WebService annotation) so we cannot query the information
+    directly from the object like we can in the non-AOP case. The "fix" is to also specify the actual implementorClass.
+    -->
+
+    <jaxws:endpoint id="endpointJasperPrintService"
+                    implementor="#jasperPrintService"
+                    implementorClass="ua.np.services.printforms.JasperPrintServiceImpl"
+                    address="${address}">
+
+        <jaxws:properties>
+            <entry key="mtom-enabled" value="true"/>
+        </jaxws:properties>
+    </jaxws:endpoint>
+
+    <jaxrs:server id="jasperServerStub" address="${address}">
+        <jaxrs:serviceBeans>
+            <bean id="jasperStubService" class="ua.np.services.printforms.ReportExecutionsServiceImpl"/>
+        </jaxrs:serviceBeans>
+    </jaxrs:server>
+
+    <jaxws:client id="clientJasperPrintService"
+                  serviceClass="ua.np.services.printforms.JasperPrintService"
+                  address="${address}"/>
+
+</beans>

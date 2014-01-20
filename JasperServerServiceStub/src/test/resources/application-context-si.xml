@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans default-lazy-init="true"
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context.xsd
+                           http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd">
+
+    <!--<context:annotation-config/>-->
+    <!-- these are included in the dependency jar -->
+    <!--<import resource="classpath:META-INF/cxf/cxf.xml"/>-->
+
+    <context:property-override location="classpath*:/testPropsServer.properties"/>
+
+    <jaxrs:server id="endpointReportExecution" address="${address}">
+        <jaxrs:serviceBeans>
+            <bean id="infoService" class="ua.np.services.printforms.ServerInfoServiceImpl"/>
+        </jaxrs:serviceBeans>
+    </jaxrs:server>
+
+    <jaxrs:client id="clientServerInfoService"
+                  address="http://localhost:8070/jasperserver/rest_v2"
+                  serviceClass="ua.np.services.printforms.ServerInfoService"
+                  inheritHeaders="true" >
+    </jaxrs:client>
+
+</beans>

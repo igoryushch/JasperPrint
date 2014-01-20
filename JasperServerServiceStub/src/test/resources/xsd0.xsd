@@ -1,0 +1,730 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="addressesListWrapper" type="addressesListWrapper"/>
+
+  <xs:element name="attribute" type="clientUserAttribute"/>
+
+  <xs:element name="attributes" type="userAttributesListWrapper"/>
+
+  <xs:element name="calendarTrigger" nillable="true" type="xs:anyType"/>
+
+  <xs:element name="dateTimeFormatValidationRule" type="dateTimeFormatValidationRule"/>
+
+  <xs:element name="excludeDays" type="excludeDaysWrapper"/>
+
+  <xs:element name="export" nillable="true" type="xs:anyType"/>
+
+  <xs:element name="ftpInfo" type="ftpInfo"/>
+
+  <xs:element name="inputControlOption" type="inputControlOption"/>
+
+  <xs:element name="inputControlState" type="inputControlState"/>
+
+  <xs:element name="inputControls" type="reportInputControlsListWrapper"/>
+
+  <xs:element name="job" nillable="true" type="xs:anyType"/>
+
+  <xs:element name="jobIdList" type="jobIdListWrapper"/>
+
+  <xs:element name="jobModel" type="reportJobModel"/>
+
+  <xs:element name="mandatoryValidationRule" type="mandatoryValidationRule"/>
+
+  <xs:element name="months" type="monthsSortedSetWrapper"/>
+
+  <xs:element name="outputFormats" type="reportJobOutputFormatsWrapper"/>
+
+  <xs:element name="parameters" type="reportParametersMapWrapper"/>
+
+  <xs:element name="patch" type="patchItem"/>
+
+  <xs:element name="patchItems" type="patchDescriptor"/>
+
+  <xs:element name="permissions" type="repositoryPermissionListWrapper"/>
+
+  <xs:element name="rangeValidationRule" type="rangeValidationRule"/>
+
+  <xs:element name="regexpValidationRule" type="regexpValidationRule"/>
+
+  <xs:element name="reportExecutionRequest" type="reportExecutionRequest"/>
+
+  <xs:element name="reportInputControl" type="reportInputControl"/>
+
+  <xs:element name="reportJobAlert" type="reportJobAlert"/>
+
+  <xs:element name="reportJobCalendar" type="reportJobCalendar"/>
+
+  <xs:element name="reportJobMailNotification" type="reportJobMailNotification"/>
+
+  <xs:element name="reportJobSource" type="reportJobSource"/>
+
+  <xs:element name="reportParameter" type="reportParameter"/>
+
+  <xs:element name="reportParameters" type="reportParameters"/>
+
+  <xs:element name="repositoryPermission" type="repositoryPermission"/>
+
+  <xs:element name="role" type="clientRole"/>
+
+  <xs:element name="simpleTrigger" nillable="true" type="xs:anyType"/>
+
+  <xs:element name="state" type="reportJobRuntimeInformation"/>
+
+  <xs:element name="stateModel" type="reportJobRuntimeInformationModel"/>
+
+  <xs:element name="status" type="reportExecutionStatusEntity"/>
+
+  <xs:element name="user" type="clientUser"/>
+
+  <xs:element name="weekDaysSortedSetWrapper" type="weekDaysSortedSetWrapper"/>
+
+  <xs:complexType name="jobIdListWrapper">
+    <xs:sequence>
+      <xs:element name="jobId" type="xs:long" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="clientUserAttribute">
+    <xs:sequence>
+      <xs:element name="name" type="xs:string" minOccurs="0"/>
+      <xs:element name="value" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="reportExecutionStatusEntity">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+
+  <xs:complexType name="exportTaskDto">
+    <xs:sequence>
+      <xs:element name="parameters" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="parameter" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="uris" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="uri" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="roles" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="role" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="users" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="user" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="parameters" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="roles" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="scheduledJobs" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="uris" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="users" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="userAttributesListWrapper">
+    <xs:sequence>
+      <xs:element ref="attribute" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="repositoryPermission">
+    <xs:sequence>
+      <xs:element name="mask" type="xs:int" minOccurs="0"/>
+      <xs:element name="recipient" type="xs:string" minOccurs="0"/>
+      <xs:element name="uri" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="reportParameters">
+    <xs:sequence>
+      <xs:element ref="reportParameter" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="reportParameter">
+    <xs:sequence>
+      <xs:element name="value" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="name" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="repositoryPermissionListWrapper">
+    <xs:sequence>
+      <xs:element name="permission" type="repositoryPermission" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="reportJobModel">
+    <xs:complexContent>
+      <xs:extension base="reportJob">
+        <xs:sequence>
+          <xs:element name="alertModel" type="reportJobAlertModel" minOccurs="0"/>
+          <xs:element name="repositoryDestinationModel" type="reportJobRepositoryDestinationModel" minOccurs="0"/>
+          <xs:element name="mailNotificationModel" type="reportJobMailNotificationModel" minOccurs="0"/>
+          <xs:element name="runtimeInformationModel" type="reportJobRuntimeInformationModel" minOccurs="0"/>
+          <xs:element name="sourceModel" type="reportJobSourceModel" minOccurs="0"/>
+          <xs:choice minOccurs="0">
+            <xs:element name="simpleTriggerModel" type="reportJobSimpleTriggerModel"/>
+            <xs:element name="calendarTriggerModel" type="reportJobCalendarTriggerModel"/>
+          </xs:choice>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="reportJob">
+    <xs:sequence>
+      <xs:element name="alert" type="reportJobAlert" minOccurs="0"/>
+      <xs:element name="baseOutputFilename" type="xs:string" minOccurs="0"/>
+      <xs:element name="repositoryDestination" type="reportJobRepositoryDestination" minOccurs="0"/>
+      <xs:element name="creationDate" type="xs:string" minOccurs="0"/>
+      <xs:element name="description" type="xs:string" minOccurs="0"/>
+      <xs:element name="id" type="xs:long"/>
+      <xs:element name="label" type="xs:string" minOccurs="0"/>
+      <xs:element name="mailNotification" type="reportJobMailNotification" minOccurs="0"/>
+      <xs:element ref="outputFormats" minOccurs="0"/>
+      <xs:element name="outputLocale" type="xs:string" minOccurs="0"/>
+      <xs:element name="outputTimeZone" type="xs:string" minOccurs="0"/>
+      <xs:element name="source" type="reportJobSource" minOccurs="0"/>
+      <xs:choice minOccurs="0">
+        <xs:element ref="simpleTrigger"/>
+        <xs:element ref="calendarTrigger"/>
+      </xs:choice>
+      <xs:element name="username" type="xs:string" minOccurs="0"/>
+      <xs:element name="version" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="reportJobAlertModel">
+    <xs:complexContent>
+      <xs:extension base="reportJobAlert">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="reportJobAlert">
+    <xs:sequence>
+      <xs:element name="id" type="xs:long"/>
+      <xs:element name="includingReportJobInfo" type="xs:boolean"/>
+      <xs:element name="includingStackTrace" type="xs:boolean"/>
+      <xs:element name="jobState" type="jobState" minOccurs="0"/>
+      <xs:element name="messageText" type="xs:string" minOccurs="0"/>
+      <xs:element name="messageTextWhenJobFails" type="xs:string" minOccurs="0"/>
+      <xs:element name="recipient" type="recipient" minOccurs="0"/>
+      <xs:element name="subject" type="xs:string" minOccurs="0"/>
+      <xs:element name="toAddresses" type="addressesListWrapper" minOccurs="0"/>
+      <xs:element name="version" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="addressesListWrapper">
+    <xs:sequence>
+      <xs:element name="address" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="reportJobRepositoryDestinationModel">
+    <xs:complexContent>
+      <xs:extension base="reportJobRepositoryDestination">
+        <xs:sequence>
+          <xs:element name="outputFTPInfoModel" type="ftpInfoModel" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="reportJobRepositoryDestination">
+    <xs:sequence>
+      <xs:element name="defaultReportOutputFolderURI" type="xs:string" minOccurs="0"/>
+      <xs:element name="folderURI" type="xs:string" minOccurs="0"/>
+      <xs:element name="id" type="xs:long"/>
+      <xs:element name="outputDescription" type="xs:string" minOccurs="0"/>
+      <xs:element name="outputFTPInfo" type="ftpInfo" minOccurs="0"/>
+      <xs:element name="outputLocalFolder" type="xs:string" minOccurs="0"/>
+      <xs:element name="overwriteFiles" type="xs:boolean"/>
+      <xs:element name="saveToRepository" type="xs:boolean"/>
+      <xs:element name="sequentialFilenames" type="xs:boolean"/>
+      <xs:element name="timestampPattern" type="xs:string" minOccurs="0"/>
+      <xs:element name="usingDefaultReportOutputFolderURI" type="xs:boolean"/>
+      <xs:element name="version" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ftpInfoModel">
+    <xs:complexContent>
+      <xs:extension base="ftpInfo">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ftpInfo">
+    <xs:sequence>
+      <xs:element name="folderPath" type="xs:string" minOccurs="0"/>
+      <xs:element name="implicit" type="xs:boolean"/>
+      <xs:element name="password" type="xs:string" minOccurs="0"/>
+      <xs:element name="pbsz" type="xs:long"/>
+      <xs:element name="port" type="xs:int"/>
+      <xs:element name="prot" type="xs:string" minOccurs="0"/>
+      <xs:element name="protocol" type="xs:string" minOccurs="0"/>
+      <xs:element name="serverName" type="xs:string" minOccurs="0"/>
+      <xs:element name="type" type="xs:string" minOccurs="0"/>
+      <xs:element name="userName" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="reportJobMailNotificationModel">
+    <xs:complexContent>
+      <xs:extension base="reportJobMailNotification">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="reportJobMailNotification">
+    <xs:sequence>
+      <xs:element name="bccAddresses" type="addressesListWrapper" minOccurs="0"/>
+      <xs:element name="ccAddresses" type="addressesListWrapper" minOccurs="0"/>
+      <xs:element name="id" type="xs:long"/>
+      <xs:element name="includingStackTraceWhenJobFails" type="xs:boolean"/>
+      <xs:element name="messageText" type="xs:string" minOccurs="0"/>
+      <xs:element name="messageTextWhenJobFails" type="xs:string" minOccurs="0"/>
+      <xs:element name="resultSendType" type="xs:string" minOccurs="0"/>
+      <xs:element name="skipEmptyReports" type="xs:boolean"/>
+      <xs:element name="skipNotificationWhenJobFails" type="xs:boolean"/>
+      <xs:element name="subject" type="xs:string" minOccurs="0"/>
+      <xs:element name="toAddresses" type="addressesListWrapper" minOccurs="0"/>
+      <xs:element name="version" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="reportJobRuntimeInformationModel">
+    <xs:complexContent>
+      <xs:extension base="reportJobRuntimeInformation">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="reportJobRuntimeInformation">
+    <xs:sequence>
+      <xs:element name="nextFireTime" type="xs:string" minOccurs="0"/>
+      <xs:element name="previousFireTime" type="xs:string" minOccurs="0"/>
+      <xs:element name="value" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="reportJobSourceModel">
+    <xs:complexContent>
+      <xs:extension base="reportJobSource">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="reportJobSource">
+    <xs:sequence>
+      <xs:element ref="parameters" minOccurs="0"/>
+      <xs:element name="reportUnitURI" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="reportParametersMapWrapper">
+    <xs:sequence>
+      <xs:element name="parameterValues">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="entry" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="key" minOccurs="0" type="xs:string"/>
+                  <xs:element name="value" minOccurs="0" type="xs:anyType"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="collection">
+    <xs:sequence>
+      <xs:element name="item" type="xs:anyType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="reportJobSimpleTriggerModel">
+    <xs:complexContent>
+      <xs:extension base="reportJobSimpleTrigger">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="reportJobSimpleTrigger">
+    <xs:complexContent>
+      <xs:extension base="reportJobTrigger">
+        <xs:sequence>
+          <xs:element name="occurrenceCount" type="xs:int"/>
+          <xs:element name="recurrenceInterval" type="xs:int" minOccurs="0"/>
+          <xs:element name="recurrenceIntervalUnit" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="reportJobTrigger" abstract="true">
+    <xs:sequence>
+      <xs:element name="calendarName" type="xs:string" minOccurs="0"/>
+      <xs:element name="endDate" type="xs:string" minOccurs="0"/>
+      <xs:element name="id" type="xs:long"/>
+      <xs:element name="misfireInstruction" type="xs:int"/>
+      <xs:element name="startDate" type="xs:string" minOccurs="0"/>
+      <xs:element name="startType" type="xs:byte"/>
+      <xs:element name="timezone" type="xs:string" minOccurs="0"/>
+      <xs:element name="version" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="reportJobCalendarTriggerModel">
+    <xs:complexContent>
+      <xs:extension base="reportJobCalendarTrigger">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="reportJobCalendarTrigger">
+    <xs:complexContent>
+      <xs:extension base="reportJobTrigger">
+        <xs:sequence>
+          <xs:element name="daysType" type="xs:string" minOccurs="0"/>
+          <xs:element name="hours" type="xs:string" minOccurs="0"/>
+          <xs:element name="minutes" type="xs:string" minOccurs="0"/>
+          <xs:element name="monthDays" type="xs:string" minOccurs="0"/>
+          <xs:element ref="months" minOccurs="0"/>
+          <xs:element name="weekDays" type="weekDaysSortedSetWrapper" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="monthsSortedSetWrapper">
+    <xs:sequence>
+      <xs:element name="month" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="weekDaysSortedSetWrapper">
+    <xs:sequence>
+      <xs:element name="day" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="reportJobOutputFormatsWrapper">
+    <xs:sequence>
+      <xs:element name="outputFormat" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="clientUser">
+    <xs:sequence>
+      <xs:element name="emailAddress" type="xs:string" minOccurs="0"/>
+      <xs:element name="enabled" type="xs:boolean" minOccurs="0"/>
+      <xs:element name="externallyDefined" type="xs:boolean" minOccurs="0"/>
+      <xs:element name="fullName" type="xs:string" minOccurs="0"/>
+      <xs:element name="password" type="xs:string" minOccurs="0"/>
+      <xs:element name="previousPasswordChangeTime" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="roles" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element ref="role" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="tenantId" type="xs:string" minOccurs="0"/>
+      <xs:element name="username" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="clientRole">
+    <xs:sequence>
+      <xs:element name="externallyDefined" type="xs:boolean"/>
+      <xs:element name="name" type="xs:string" minOccurs="0"/>
+      <xs:element name="tenantId" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="patchDescriptor">
+    <xs:sequence>
+      <xs:element ref="patch" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="version" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="patchItem">
+    <xs:sequence>
+      <xs:element name="expression" type="xs:string" minOccurs="0"/>
+      <xs:element name="field" type="xs:string" minOccurs="0"/>
+      <xs:element name="value" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="reportInputControlsListWrapper">
+    <xs:sequence>
+      <xs:element name="inputControl" type="reportInputControl" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="reportInputControl">
+    <xs:sequence>
+      <xs:element name="description" type="xs:string" minOccurs="0"/>
+      <xs:element name="id" type="xs:string" minOccurs="0"/>
+      <xs:element name="label" type="xs:string" minOccurs="0"/>
+      <xs:element name="mandatory" type="xs:boolean" minOccurs="0"/>
+      <xs:element name="masterDependencies" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="controlId" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="readOnly" type="xs:boolean" minOccurs="0"/>
+      <xs:element name="slaveDependencies" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="controlId" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="state" type="inputControlState" minOccurs="0"/>
+      <xs:element name="type" type="xs:string" minOccurs="0"/>
+      <xs:element name="uri" type="xs:string" minOccurs="0"/>
+      <xs:element name="validationRules" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+              <xs:element ref="rangeValidationRule"/>
+              <xs:element ref="regexpValidationRule"/>
+              <xs:element ref="dateTimeFormatValidationRule"/>
+              <xs:element ref="mandatoryValidationRule"/>
+            </xs:choice>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="visible" type="xs:boolean" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="inputControlState">
+    <xs:sequence>
+      <xs:element name="error" type="xs:string" minOccurs="0"/>
+      <xs:element name="id" type="xs:string" minOccurs="0"/>
+      <xs:element name="options" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="option" type="inputControlOption" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="uri" type="xs:string" minOccurs="0"/>
+      <xs:element name="value" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="inputControlOption">
+    <xs:sequence>
+      <xs:element name="label" type="xs:string" minOccurs="0"/>
+      <xs:element name="selected" type="xs:boolean"/>
+      <xs:element name="value" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="rangeValidationRule">
+    <xs:complexContent>
+      <xs:extension base="invertibleValidationRule">
+        <xs:sequence>
+          <xs:element name="includeMaxValue" type="xs:boolean" minOccurs="0"/>
+          <xs:element name="includeMinValue" type="xs:boolean" minOccurs="0"/>
+          <xs:element name="maxValue" type="xs:decimal" minOccurs="0"/>
+          <xs:element name="minValue" type="xs:decimal" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="invertibleValidationRule" abstract="true">
+    <xs:complexContent>
+      <xs:extension base="validationRule">
+        <xs:sequence>
+          <xs:element name="inverted" type="xs:boolean" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="validationRule" abstract="true">
+    <xs:sequence>
+      <xs:element name="errorMessage" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="regexpValidationRule">
+    <xs:complexContent>
+      <xs:extension base="invertibleValidationRule">
+        <xs:sequence>
+          <xs:element name="regexp" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="dateTimeFormatValidationRule">
+    <xs:complexContent>
+      <xs:extension base="validationRule">
+        <xs:sequence>
+          <xs:element name="format" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="mandatoryValidationRule">
+    <xs:complexContent>
+      <xs:extension base="validationRule">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="reportExecutionRequest">
+    <xs:sequence>
+      <xs:element name="async" type="xs:boolean" minOccurs="0"/>
+      <xs:element name="attachmentsPrefix" type="xs:string" minOccurs="0"/>
+      <xs:element name="freshData" type="xs:boolean" minOccurs="0"/>
+      <xs:element name="ignorePagination" type="xs:boolean" minOccurs="0"/>
+      <xs:element name="interactive" type="xs:boolean" minOccurs="0"/>
+      <xs:element name="outputFormat" type="xs:string" minOccurs="0"/>
+      <xs:element name="pages" type="xs:string" minOccurs="0"/>
+      <xs:element name="parameters" type="reportParameters" minOccurs="0"/>
+      <xs:element name="reportUnitUri" type="xs:string" minOccurs="0"/>
+      <xs:element name="saveDataSnapshot" type="xs:boolean" minOccurs="0"/>
+      <xs:element name="transformerKey" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="exportExecutionOptions">
+    <xs:sequence>
+      <xs:element name="attachmentsPrefix" type="xs:string" minOccurs="0"/>
+      <xs:element name="outputFormat" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="reportJobClientExtension">
+    <xs:complexContent>
+      <xs:extension base="reportJob">
+        <xs:sequence>
+          <xs:choice minOccurs="0">
+            <xs:element ref="simpleTrigger"/>
+            <xs:element ref="calendarTrigger"/>
+          </xs:choice>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="reportJobSimpleTriggerClientExtension">
+    <xs:complexContent>
+      <xs:extension base="reportJobSimpleTrigger">
+        <xs:sequence>
+          <xs:element name="endDate" type="xs:string" minOccurs="0"/>
+          <xs:element name="startDate" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="reportJobCalendarTriggerClientExtension">
+    <xs:complexContent>
+      <xs:extension base="reportJobCalendarTrigger">
+        <xs:sequence>
+          <xs:element name="endDate" type="xs:string" minOccurs="0"/>
+          <xs:element name="startDate" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="reportJobCalendar">
+    <xs:sequence>
+      <xs:element name="baseCalendar" type="reportJobCalendar" minOccurs="0"/>
+      <xs:element name="calendarType" type="type" minOccurs="0"/>
+      <xs:element name="cronExpression" type="xs:string" minOccurs="0"/>
+      <xs:element name="dataSorted" type="xs:boolean" minOccurs="0"/>
+      <xs:element name="description" type="xs:string" minOccurs="0"/>
+      <xs:element ref="excludeDays" minOccurs="0"/>
+      <xs:element name="excludeDaysFlags" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="excludeDayFlag" type="xs:boolean" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="invertTimeRange" type="xs:boolean" minOccurs="0"/>
+      <xs:element name="rangeEndingCalendar" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="rangeStartingCalendar" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="timeZone" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="excludeDaysWrapper">
+    <xs:sequence>
+      <xs:element name="excludeDay" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="jobState">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NONE"/>
+      <xs:enumeration value="ALL"/>
+      <xs:enumeration value="FAIL_ONLY"/>
+      <xs:enumeration value="SUCCESS_ONLY"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="recipient">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NONE"/>
+      <xs:enumeration value="OWNER"/>
+      <xs:enumeration value="ADMIN"/>
+      <xs:enumeration value="OWNER_AND_ADMIN"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="type">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="annual"/>
+      <xs:enumeration value="base"/>
+      <xs:enumeration value="cron"/>
+      <xs:enumeration value="daily"/>
+      <xs:enumeration value="holiday"/>
+      <xs:enumeration value="monthly"/>
+      <xs:enumeration value="weekly"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
